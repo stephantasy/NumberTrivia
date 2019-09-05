@@ -9,32 +9,30 @@ import 'package:number_trivia/features/number_trivia/domain/usecases/get_random_
 class MockNumberTriviaRepository extends Mock
     implements NumberTriviaRepository {}
 
-  void main() {
-    GetRandomNumberTrivia usecase;
-    MockNumberTriviaRepository mockNumberTriviaRepository;
+void main() {
+  GetRandomNumberTrivia usecase;
+  MockNumberTriviaRepository mockNumberTriviaRepository;
 
-    setUp(() {
-      mockNumberTriviaRepository = MockNumberTriviaRepository();
-      usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
-    });
+  setUp(() {
+    mockNumberTriviaRepository = MockNumberTriviaRepository();
+    usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
+  });
 
-    final tNumberTrivia = NumberTrivia(number: 1, text: 'test');
+  final tNumberTrivia = NumberTrivia(number: 1, text: 'test');
 
-    test(
-      'should get trivia from the repository',
-      () async {
-        // arrange (= Peut importe le nombre passé, on doit retourner "la partie droite" de getConcreteNumberTrivia, soit 'NumberTriva')
-        when(mockNumberTriviaRepository.getRandomNumberTrivia())
-            .thenAnswer((_) async => Right(tNumberTrivia));
-
-        // act
-        final result = await usecase(NoParams());
-
-        // assert
-        expect(result, Right(tNumberTrivia));
-        verify(mockNumberTriviaRepository.getRandomNumberTrivia());
-        verifyNoMoreInteractions(mockNumberTriviaRepository);
-      },
-    );
-  }
-
+  test(
+    'should get trivia from the repository',
+    () async {
+      // arrange
+      when(mockNumberTriviaRepository.getRandomNumberTrivia())
+          .thenAnswer((_) async => Right(tNumberTrivia));
+      // act
+      // Since random number doesn't require any parameters, we pass in NoParams.
+      final result = await usecase(NoParams());
+      // assert
+      expect(result, Right(tNumberTrivia));
+      verify(mockNumberTriviaRepository.getRandomNumberTrivia());
+      verifyNoMoreInteractions(mockNumberTriviaRepository);
+    },
+  );
+}
