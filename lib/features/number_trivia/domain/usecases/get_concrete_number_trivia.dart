@@ -13,14 +13,12 @@ class GetConcreteNumberTrivia implements UseCase<NumberTrivia, Params> {
 
   // The "call" name allows to call the method without specifying its name: "final result = await usecase(number: tNumber);"
   @override
-  Future<Either<Failure, NumberTrivia>> call({
-    Params params,
-  }) async {
+  Future<Either<Failure, NumberTrivia>> call(Params params) async {
     return await repository.getConcreteNumberTrivia(params.number);
   }
 }
 
-class Params extends Equatable{
+class Params extends Equatable {
   final int number;
   Params({@required this.number}) : super([number]);
 }
