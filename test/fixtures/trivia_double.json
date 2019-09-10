@@ -1,6 +1,6 @@
 {
-    "text": "Test Text Double JSON",
+    "text": "Test Text",
     "number": 1.0,
     "found": true,
     "type": "trivia"
-}
+  }
