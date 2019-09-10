@@ -9,6 +9,7 @@
             "type": "dart",
             "request": "launch",
             "program": "./test/"
+            // USE Terminal command "flutter test" to run all tests!
         },
         {
             "name": "Flutter",
